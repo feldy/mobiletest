@@ -5,7 +5,7 @@ import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:mobiletest/menu_akun.dart';
 import 'package:mobiletest/menu_cari.dart';
 import 'package:mobiletest/menu_cart.dart';
-import 'package:mobiletest/menu_homme.dart';
+import 'package:mobiletest/menu_home.dart';
 
 class MenuUtama extends StatelessWidget {
   @override
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ]);
 
   final List<Widget> _childrenPage = [
-      MenuHomme(),
+      MenuHome(),
       MenuCari(),
       MenuCart(),
       MenuAkun()
