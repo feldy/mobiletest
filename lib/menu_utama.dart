@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 
+import 'package:mobiletest/menu_akun.dart';
+import 'package:mobiletest/menu_cari.dart';
+import 'package:mobiletest/menu_cart.dart';
+import 'package:mobiletest/menu_homme.dart';
+
 class MenuUtama extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,8 +30,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int selectedPos = 0;
-
   double bottomNavBarHeight = 60;
+  late CircularBottomNavigationController _navigationController;
 
   List<TabItem> tabItems = List.of([
     new TabItem(Icons.home, "Home", Colors.black12),
@@ -35,7 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
     new TabItem(Icons.account_circle_rounded, "Akun", Colors.black12),
   ]);
 
-  late CircularBottomNavigationController _navigationController;
+  final List<Widget> _childrenPage = [
+      MenuHomme(),
+      MenuCari(),
+      MenuCart(),
+      MenuAkun()
+  ];
+
 
   @override
   void initState() {
@@ -54,7 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
   Widget bodyContainer() {
     Color selectedColor = tabItems[selectedPos].circleColor;
     String slogan = "";
@@ -74,7 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     return GestureDetector(
-      child: Container(
+      child: _childrenPage[selectedPos],
+      /*child: Container(
         width: double.infinity,
         height: double.infinity,
         color: selectedColor,
@@ -84,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
           ),
         ),
-      ),
+      ),*/
       onTap: () {
         if (_navigationController.value == tabItems.length - 1) {
           _navigationController.value = 0;
@@ -94,7 +105,6 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
   }
-
   Widget bottomNav() {
     return CircularBottomNavigation(
       tabItems,
