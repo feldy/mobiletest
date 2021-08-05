@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fancy_on_boarding/fancy_on_boarding.dart';
+
 // import 'package:mobiletest/menu_home.dart';
 import 'package:mobiletest/menu_utama.dart';
 
@@ -55,12 +56,14 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.black26,
               fontSize: 34.0,
             )),
-        body: Text('Aplikasi Apotek Online ini bertujuan untuk memudahkan anda dalam mencari obat tanpa harus keluar rumah.',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18.0,
-            )),
+        body: Center(
+          child: Text('Aplikasi POS Untuk Apotek',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18.0,
+              )),
+        ),
         iconImagePath: 'assets/png/shopping_cart.png'),
     PageModel(
         color: const Color(0xFF65B0B4),
