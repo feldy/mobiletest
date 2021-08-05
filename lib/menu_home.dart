@@ -30,7 +30,7 @@ class UserPage extends StatelessWidget {
       style: contentStyle(context),
       child: Column(
         children: <Widget>[
-          Txt('User settings', style: titleStyle),
+          Txt('Selamat Datang', style: titleStyle),
           UserCard(),
           ActionsRow(),
           Settings(),
@@ -48,9 +48,9 @@ class UserCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Txt('Rein Gundersen Bentdal', style: nameTextStyle),
+            Txt('Hi Feldy !', style: nameTextStyle),
             SizedBox(height: 5),
-            Txt('Creative builder', style: nameDescriptionTextStyle)
+            Txt('Silver Account', style: nameDescriptionTextStyle)
           ],
         )
       ],

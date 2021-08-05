@@ -97,11 +97,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),*/
       onTap: () {
-        if (_navigationController.value == tabItems.length - 1) {
-          _navigationController.value = 0;
-        } else {
-          _navigationController.value++;
-        }
+        // if (_navigationController.value == tabItems.length - 1) {
+        //   _navigationController.value = 0;
+        // } else {
+        //   _navigationController.value++;
+        // }
       },
     );
   }
