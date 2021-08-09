@@ -3,6 +3,7 @@ import 'package:fancy_on_boarding/fancy_on_boarding.dart';
 
 // import 'package:mobiletest/menu_home.dart';
 import 'package:mobiletest/menu_utama.dart';
+// import 'package:mobiletest/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +19,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
 
       //Add Route to the main Page.
-      routes: {'/mainPage': (context) => MenuUtama()},
+      routes: {
+        '/mainPage': (context) => MenuUtama(),
+        // '/loginPage': (context) => Login(),
+      },
       title: 'Apotek OL',
       theme: ThemeData(primarySwatch: Colors.cyan, fontFamily: 'Nunito'),
       home: MyHomePage(title: 'Introduction'),
@@ -48,12 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
   //Create a list of PageModel to be set on the onBoarding Screens.
   final pageList = [
     PageModel(
-        color: const Color(0xFF7FE858),
+        color: const Color(0xFF7665B4),
         heroImagePath: 'assets/png/efway_logo.png',
         title: Text('Selamat Datang :)',
             style: TextStyle(
               fontWeight: FontWeight.w800,
-              color: Colors.black26,
+              color: Colors.white,
               fontSize: 34.0,
             )),
         body: Center(
@@ -171,11 +175,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       //Pass pageList and the mainPage route.
       body: FancyOnBoarding(
-        doneButtonText: "Masuk",
         skipButtonText: "Skip",
+        doneButtonText: "Login",
+        doneButtonTextStyle:
+          TextStyle(
+            color: Colors.white,
+            fontSize: 14.0,
+            fontWeight: FontWeight.w800
+          ),
         pageList: pageList,
         onDoneButtonPressed: () =>
-            Navigator.of(context).pushReplacementNamed('/mainPage'),
+            // Navigator.of(context).pushReplacementNamed('/loginPage'),
+            Navigator.of(context).pushReplacementNamed('/loginPage'),
         onSkipButtonPressed: () =>
             Navigator.of(context).pushReplacementNamed('/mainPage'),
       ),

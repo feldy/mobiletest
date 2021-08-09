@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
@@ -28,10 +30,14 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+
 class _MyHomePageState extends State<MyHomePage> {
   int selectedPos = 0;
   double bottomNavBarHeight = 60;
   late CircularBottomNavigationController _navigationController;
+  // Read the latest value
+
+  // int latest = _navigationController.value;
 
   List<TabItem> tabItems = List.of([
     new TabItem(Icons.home, "Home", Colors.black12),
@@ -47,7 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
       MenuAkun()
   ];
 
-
   @override
   void initState() {
     super.initState();
@@ -56,32 +61,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Padding(child: bodyContainer(), padding: EdgeInsets.only(bottom: bottomNavBarHeight),),
+          // Padding(child: bodyContainer(), padding: EdgeInsets.only(bottom: bottomNavBarHeight),),
+          Padding(child: MenuHome(), padding: EdgeInsets.only(bottom: bottomNavBarHeight),),
           Align(alignment: Alignment.bottomCenter, child: bottomNav())
         ],
       ),
     );
+
+
   }
+
   Widget bodyContainer() {
     Color selectedColor = tabItems[selectedPos].circleColor;
-    String slogan = "";
-    switch (selectedPos) {
-      case 0:
-        slogan = "Familly, Happiness, Food";
-        break;
-      case 1:
-        slogan = "Find, Check, Use";
-        break;
-      case 2:
-        slogan = "Receive, Review, Rip";
-        break;
-      case 3:
-        slogan = "Noise, Panic, Ignore";
-        break;
-    }
 
     return GestureDetector(
       child: _childrenPage[selectedPos],
@@ -96,16 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),*/
-      onTap: () {
-        // if (_navigationController.value == tabItems.length - 1) {
-        //   _navigationController.value = 0;
-        // } else {
-        //   _navigationController.value++;
-        // }
-      },
+      onTap: () {},
     );
   }
   Widget bottomNav() {
+    int lastValue = _navigationController.value;
+
     return CircularBottomNavigation(
       tabItems,
       controller: _navigationController,
@@ -113,10 +104,22 @@ class _MyHomePageState extends State<MyHomePage> {
       barBackgroundColor: Colors.white,
       animationDuration: Duration(milliseconds: 300),
       selectedCallback: (int selectedPos) {
-        setState(() {
           this.selectedPos = selectedPos;
-          // print(_navigationController.value);
-        });
+          // print(">>>> selectedPos "+ selectedPos.toString());
+
+          if (selectedPos == 1) { //cari
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MenuCari()));
+
+            print(">>>> lastValue "+ lastValue.toString());
+          } else {
+            lastValue = _navigationController.value;
+          }
+
+          _navigationController.value = lastValue;
+        // setState(() {
+        //   this.selectedPos = selectedPos;
+        //   // print(_navigationController.value);
+        // });
       },
     );
   }
